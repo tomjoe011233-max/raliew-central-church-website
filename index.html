@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raliew Seventh-day Adventist Church</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@600;700;800&display=swap');
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: radial-gradient(circle at top, rgba(255,255,255,0.1), transparent 40%),
+                        linear-gradient(135deg, #084c61, #0b7d7d);
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            margin: 0;
+            color: #ffd97a;
+            font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+            letter-spacing: 0.16em;
+            line-height: 1.05;
+            text-transform: uppercase;
+            text-shadow: 0 2px 18px rgba(0, 0, 0, 0.24);
+            background: linear-gradient(180deg, rgba(255, 217, 122, 0.18), rgba(255, 255, 255, 0.05));
+            border: 1px solid rgba(255, 217, 122, 0.28);
+            border-radius: 20px;
+            padding: 14px 18px;
+            box-shadow:
+                inset 0 0 0 1px rgba(255, 255, 255, 0.03),
+                0 20px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        h1 {
+            font-size: clamp(2.4rem, 6vw, 5rem);
+            letter-spacing: 0.24em;
+            padding: 20px 22px;
+            background: linear-gradient(180deg, rgba(255, 253, 245, 0.22), rgba(255, 255, 255, 0.08));
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        h2 {
+            font-size: clamp(1.35rem, 3vw, 2rem);
+            letter-spacing: 0.18em;
+            padding: 16px 18px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.04));
+            border-color: rgba(255, 255, 255, 0.16);
+        }
+
+        .container {
+            width: min(92vw, 860px);
+            padding: 40px 32px;
+        }
+
+        .church-card {
+            background: linear-gradient(180deg, #0b1723 0%, #0c2b42 100%);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 28px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+            padding: 48px 36px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .church-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at top, rgba(255,255,255,0.08), transparent 30%);
+            pointer-events: none;
+        }
+
+        .logo-panel {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 28px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo-mark {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #ffd97a, #f2a700 45%, #b15f00 100%);
+            display: grid;
+            place-items: center;
+            box-shadow: inset 0 0 20px rgba(255,255,255,0.15), 0 18px 30px rgba(0,0,0,0.25);
+            position: relative;
+        }
+
+        .logo-mark::before {
+            content: '';
+            position: absolute;
+            width: 72px;
+            height: 72px;
+            background: rgba(255,255,255,0.12);
+            border-radius: 50%;
+            top: 14px;
+            left: 14px;
+        }
+
+        .logo-mark span {
+            position: relative;
+            font-size: 3rem;
+            line-height: 1;
+            color: #ffffff;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.35);
+        }
+
+        .logo-text {
+            letter-spacing: 0.18em;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            color: #f9f4e6;
+            background: rgba(255,255,255,0.08);
+            padding: 10px 18px;
+            border-radius: 999px;
+            box-shadow: inset 0 0 10px rgba(255,255,255,0.06);
+        }
+
+        .bible-heading {
+            font-size: clamp(2.4rem, 6vw, 5rem);
+            margin: 0;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            line-height: 1.05;
+            padding: 0 12px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0));
+            border-radius: 18px;
+            border: 1px solid rgba(255,255,255,0.12);
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02);
+        }
+
+        .bible-heading::before {
+            content: '📖';
+            display: block;
+            font-size: 1.6rem;
+            margin-bottom: 12px;
+            opacity: 0.8;
+        }
+
+        p {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            max-width: 700px;
+            margin: 28px auto 0;
+            opacity: 0.92;
+            position: relative;
+            z-index: 1;
+        }
+        /* Beliefs section styles */
+        .beliefs-section {
+            margin-top: 36px;
+            text-align: left;
+            z-index: 1;
+        }
+
+        .beliefs-heading {
+            font-size: 1.35rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #ffd97a;
+            margin: 0 0 10px 0;
+            display: block;
+            background: rgba(255,217,122,0.06);
+            padding: 12px 18px;
+            border-radius: 16px;
+            border: 1px solid rgba(255,217,122,0.18);
+            text-shadow: 0 1px 2px rgba(0,0,0,0.35);
+        }
+
+        .beliefs-toggle {
+            font-size: 0.95rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #ffffff;
+            margin: 0 0 18px 0;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #0b7d7d;
+            padding: 10px 16px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.14);
+            cursor: pointer;
+            font: inherit;
+        }
+
+        .beliefs-toggle:hover,
+        .beliefs-toggle:focus {
+            background: #0f98a0;
+            outline: none;
+        }
+
+        .beliefs-toggle .indicator {
+            color: #ffd97a;
+            font-weight: 700;
+            margin-left: 6px;
+            line-height: 1;
+        }
+
+        .beliefs-grid {
+            display: none;
+            grid-template-columns: repeat(2, minmax(0,1fr));
+            gap: 12px 28px;
+            margin-top: 12px;
+        }
+
+        .beliefs-grid.show {
+            display: grid;
+        }
+
+        .gallery-toggle {
+            font-size: 0.95rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #ffffff;
+            margin: 0 0 18px 0;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #0b7d7d;
+            padding: 10px 16px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.14);
+            cursor: pointer;
+            font: inherit;
+        }
+
+
+        .gallery-toggle:hover,
+        .gallery-toggle:focus {
+            background: #0f98a0;
+            outline: none;
+        }
+
+        .contact-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-left: 12px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,209,122,0.3);
+            background: #0b7d7d;
+            color: #ffd97a;
+            font: inherit;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background 200ms ease;
+        }
+
+        .contact-button:hover,
+        .contact-button:focus {
+            background: #0f98a0;
+            outline: none;
+        }
+
+        .gallery-subtitle {
+            font-size: 1rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: #ffd97a;
+            margin: 0 0 16px 0;
+            display: inline-block;
+            background: rgba(255,209,122,0.12);
+            padding: 10px 16px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,209,122,0.18);
+            box-shadow: inset 0 0 10px rgba(255,255,255,0.05);
+        }
+
+        /* Gallery grid uses max-height and opacity for smooth reveal */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0,1fr));
+            gap: 14px;
+            margin-top: 12px;
+            overflow: hidden;
+            max-height: 0;
+            opacity: 0;
+            transform: translateY(-18px);
+            transition: max-height 450ms ease, opacity 300ms ease, transform 300ms ease;
+        }
+
+        .gallery-grid.show {
+            max-height: 2000px;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .gallery-grid img {
+            width: 100%;
+            height: auto;
+            border-radius: 18px;
+            object-fit: cover;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .belief {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            color: #f6f3ea;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .belief .num {
+            color: #ffd97a;
+            min-width: 28px;
+            font-weight: 700;
+        }
+
+        @media (max-width: 640px) {
+            .beliefs-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .mission-section {
+            margin-top: 28px;
+            text-align: left;
+            z-index: 1;
+        }
+
+        .mission-text {
+            margin-top: 12px;
+            color: #f6f3ea;
+            font-size: 1rem;
+            line-height: 1.6;
+            max-width: 760px;
+        }
+        .vision-section,
+        .gallery-section {
+            margin-top: 20px;
+            text-align: left;
+            z-index: 1;
+        }
+
+        .vision-text {
+            margin-top: 10px;
+            color: #f6f3ea;
+            font-size: 1rem;
+            line-height: 1.6;
+            max-width: 760px;
+        }
+
+        .hymnals-toggle {
+            cursor: pointer;
+            display: inline-block;
+            margin-top: 14px;
+        }
+
+        .top-image img,
+        .top-image svg {
+            width: 220px;
+            height: auto;
+            border-radius: 12px;
+            display: block;
+            margin: 0 auto 18px;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            margin: 20px auto;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 18px;
+        }
+
+        .location-section {
+            margin-top: 28px;
+            text-align: left;
+            z-index: 1;
+        }
+
+        .location-toggle {
+            font-size: 0.95rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #ffffff;
+            margin: 0 0 18px 0;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #0b7d7d;
+            padding: 10px 16px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.14);
+            cursor: pointer;
+            font: inherit;
+        }
+
+        .location-toggle:hover,
+        .location-toggle:focus {
+            background: #0f98a0;
+            outline: none;
+        }
+
+        .location-toggle .indicator {
+            color: #ffd97a;
+            font-weight: 700;
+            margin-left: 6px;
+            line-height: 1;
+        }
+
+        .location-details {
+            display: none;
+            margin-top: 12px;
+        }
+
+        .location-details.show {
+            display: block;
+        }
+
+        .location-text {
+            margin-top: 12px;
+            color: #f6f3ea;
+            font-size: 1rem;
+            line-height: 1.6;
+            max-width: 760px;
+        }
+
+        .email-section {
+            margin-top: 28px;
+            text-align: left;
+            z-index: 1;
+        }
+
+        .email-toggle {
+            font-size: 0.95rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #ffffff;
+            margin: 0 0 18px 0;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #0b7d7d;
+            padding: 10px 16px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.14);
+            cursor: pointer;
+            font: inherit;
+        }
+
+        .email-toggle:hover,
+        .email-toggle:focus {
+            background: #0f98a0;
+            outline: none;
+        }
+
+        .email-toggle .indicator {
+            color: #ffd97a;
+            font-weight: 700;
+            margin-left: 6px;
+            line-height: 1;
+        }
+
+        .email-details {
+            display: none;
+            margin-top: 12px;
+        }
+
+        .email-details.show {
+            display: block;
+        }
+
+        .email-text {
+            margin-top: 12px;
+            color: #f6f3ea;
+            font-size: 1rem;
+            line-height: 1.6;
+            max-width: 760px;
+        }
+
+        .email-address {
+            background: #0b7d7d;
+            color: #ffd97a;
+            padding: 12px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            cursor: pointer;
+            display: inline-block;
+            font-size: 0.85rem;
+            font-weight: bold;
+            border: 1px solid rgba(255,209,122,0.3);
+            transition: background 0.3s ease;
+            margin-left: 8px;
+        }
+
+        .email-address:hover {
+            background: #0f98a0;
+        }
+
+        .contact-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .contact-action {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 16px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,209,122,0.3);
+            background: #0b7d7d;
+            color: #ffd97a;
+            text-decoration: none;
+            font: inherit;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            transition: background 200ms ease;
+        }
+
+        .contact-action:hover,
+        .contact-action:focus {
+            background: #0f98a0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="church-card">
+            <div class="top-image">
+                <img src="images/WhatsApp Image 2026-06-15 at 2.20.43 PM.jpeg" alt="Top image">
+            </div>
+
+            <h1 class="bible-heading">RALIEW CHURCH</h1>
+            <p>Welcome to our community. We are a place of faith, worship, and fellowship, dedicated to serving with love and grace.</p>
+            <section class="beliefs-section">
+                <h2 class="beliefs-heading">OUR BELIEFS</h2>
+                <button class="beliefs-toggle" aria-expanded="false" type="button">Show Beliefs <span class="indicator">+</span></button>
+                <div class="beliefs-grid" aria-hidden="true">
+                    <div class="belief"><span class="num">1.</span><span>The Holy Scriptures</span></div>
+                    <div class="belief"><span class="num">2.</span><span>The Trinity</span></div>
+                    <div class="belief"><span class="num">3.</span><span>God the Father</span></div>
+                    <div class="belief"><span class="num">4.</span><span>God the Son</span></div>
+                    <div class="belief"><span class="num">5.</span><span>God the Holy Spirit</span></div>
+                    <div class="belief"><span class="num">6.</span><span>Creation</span></div>
+                    <div class="belief"><span class="num">7.</span><span>The Nature of Man</span></div>
+                    <div class="belief"><span class="num">8.</span><span>The Great Controversy</span></div>
+                    <div class="belief"><span class="num">9.</span><span>The Life, Death, and Resurrection of Christ</span></div>
+                    <div class="belief"><span class="num">10.</span><span>The Experience of Salvation</span></div>
+                    <div class="belief"><span class="num">11.</span><span>Growing in Christ</span></div>
+                    <div class="belief"><span class="num">12.</span><span>The Church</span></div>
+                    <div class="belief"><span class="num">13.</span><span>The Remnant and Its Mission</span></div>
+                    <div class="belief"><span class="num">14.</span><span>Unity in the Body of Christ</span></div>
+                    <div class="belief"><span class="num">15.</span><span>Baptism</span></div>
+                    <div class="belief"><span class="num">16.</span><span>The Lord's Supper</span></div>
+                    <div class="belief"><span class="num">17.</span><span>Spiritual Gifts and Ministries</span></div>
+                    <div class="belief"><span class="num">18.</span><span>The Gift of Prophecy</span></div>
+                    <div class="belief"><span class="num">19.</span><span>The Law of God</span></div>
+                    <div class="belief"><span class="num">20.</span><span>The Sabbath</span></div>
+                    <div class="belief"><span class="num">21.</span><span>Stewardship</span></div>
+                    <div class="belief"><span class="num">22.</span><span>Christian and Moral Behavior</span></div>
+                    <div class="belief"><span class="num">23.</span><span>Marriage and the Family</span></div>
+                    <div class="belief"><span class="num">24.</span><span>Christ's Ministry in the Heavenly Sanctuary</span></div>
+                    <div class="belief"><span class="num">25.</span><span>The Second Coming of Christ</span></div>
+                    <div class="belief"><span class="num">26.</span><span>Death and Resurrection</span></div>
+                    <div class="belief"><span class="num">27.</span><span>The Millennium and the End of Sin</span></div>
+                    <div class="belief"><span class="num">28.</span><span>The New Earth</span></div>
+                </div>
+            </section>
+            <section class="mission-section">
+                <span class="beliefs-heading">OUR MISSION</span>
+                <p class="mission-text">Matthew 28:19-20 (KJV): Go ye therefore, and teach all nations, baptizing them in the name of the Father, and of the Son, and of the Holy Ghost: Teaching them to observe all things whatsoever I have commanded you: and, lo, I am with you always, even unto the end of the world. Amen.</p>
+            </section>
+            <section class="vision-section">
+                <span class="beliefs-heading">OUR VISION</span>
+                <p class="vision-text">To raise devoted followers of Jesus who love God and neighbor, share the gospel with compassion, serve our community with humility, and grow in Christlike character every day.</p>
+            </section>
+            <section class="gallery-section">
+                <h2 class="beliefs-heading">CHURCH GALLERY</h2>
+                <button class="gallery-toggle" aria-expanded="true" type="button">Hide Gallery <span class="indicator">−</span></button>
+                <a href="https://www.youtube.com/watch?v=7hK7uIGQ5Lw" target="_blank" style="text-decoration: none;">
+                    <h2 class="beliefs-heading" style="cursor: pointer;"></h2>
+                </a>
+                <div class="gallery-grid show" aria-hidden="false">
+                    <img src="images/WhatsApp Image 2026-06-15 at 2.20.43 PM.jpeg" alt="Gallery image">
+                    <img src="images/WhatsApp Image 2026-06-16 at 10.14.13 AM (1).jpeg" alt="Gallery image">
+                    <img src="images/WhatsApp Image 2026-06-16 at 10.14.13 AM.jpeg" alt="Gallery image">
+                    <img src="images/WhatsApp Image 2026-06-16 at 10.14.14 AM.jpeg" alt="Gallery image">
+                    <img src="images/WhatsApp Image 2026-06-16 at 10.14.16 AM.jpeg" alt="Gallery image">
+                    <img src="images/WhatsApp Image 2026-06-16 at 10.14.17 AM (1).jpeg" alt="Gallery image">
+                    <img src="images/WhatsApp Image 2026-06-16 at 10.14.17 AM.jpeg" alt="Gallery image">
+                    <img src="images/WhatsApp Image 2026-06-16 at 10.14.18 AM.jpeg" alt="Gallery image">
+                    <img src="images/WhatsApp Image 2026-06-16 at 7.07.45 PM (1).jpeg" alt="Gallery image">
+                    <img src="images/WhatsApp Image 2026-06-16 at 7.07.45 PM (2).jpeg" alt="Gallery image">
+                    <img src="images/WhatsApp Image 2026-06-16 at 7.07.45 PM.jpeg" alt="Gallery image">
+                    <img src="images/WhatsApp Image 2026-06-16 at 7.07.46 PM (1).jpeg" alt="Gallery image">
+                    <img src="images/WhatsApp Image 2026-06-16 at 7.07.46 PM (2).jpeg" alt="Gallery image">
+                    <img src="images/WhatsApp Image 2026-06-16 at 7.07.46 PM.jpeg" alt="Gallery image">
+                    <img src="images/WhatsApp Image 2026-06-16 at 7.07.56 PM (1).jpeg" alt="Gallery image">
+                    <img src="images/WhatsApp Image 2026-06-16 at 7.07.56 PM.jpeg" alt="Gallery image">
+                    <img src="images/WhatsApp Image 2026-06-16 at 7.21.54 AM.jpeg" alt="Gallery image">
+                    <img src="images/WhatsApp Image 2026-06-16 at 7.21.55 AM (1).jpeg" alt="Gallery image">
+                    <img src="images/WhatsApp Image 2026-06-16 at 7.21.55 AM (2).jpeg" alt="Gallery image">
+                    <img src="images/WhatsApp Image 2026-06-16 at 7.21.55 AM (3).jpeg" alt="Gallery image">
+                    <img src="images/WhatsApp Image 2026-06-16 at 7.21.55 AM.jpeg" alt="Gallery image">
+                </div>
+            </section>
+            <section class="location-section">
+                <h2 class="beliefs-heading">LOCATION GUIDE</h2>
+                <button class="location-toggle" aria-expanded="false" type="button">Show Location <span class="indicator">+</span></button>
+                <div class="location-details" aria-hidden="true">
+                    <p class="location-text"><strong>Church Address:</strong> R98P+HRC, Asembo, Kenya <a href="https://maps.google.com/maps?q=R98P+HRC,+Asembo,+Kenya&layer=m&z=18" target="_blank" style="background: #0b7d7d; color: #ffd97a; padding: 6px 12px; border-radius: 6px; text-decoration: none; cursor: pointer; font-size: 0.85rem; font-weight: bold; display: inline-block; margin-left: 8px; border: 1px solid rgba(255,209,122,0.3); transition: background 0.3s ease;">📍 Click to View</a></p>
+                    <p class="location-text"><strong>📍 Church Location:</strong> Rarieda, Siaya County, Kenya</p>
+                    <p class="location-text"><strong>Service Times:</strong> Saturday at 8:30AM-6:00PM</p>
+                    <p class="location-text"><strong>Contact:</strong> 0718403106</p>
+                    <div class="contact-actions">
+                        <a href="mailto:raliewcentralchurch@gmail.com" class="contact-action">Send Message</a>
+                        <a href="tel:+254718403106" class="contact-action">Call</a>
+                        <a href="https://wa.me/254718403106" target="_blank" rel="noopener noreferrer" class="contact-action">WhatsApp</a>
+                    </div>
+                    <p class="location-text"><strong>Email:</strong> <a href="mailto:raliewcentralchurch@gmail.com" class="email-address">raliewcentralchurch@gmail.com</a></p>
+                    <p class="location-text" style="margin-top: 20px; font-style: italic; color: #f9f4e6;">We extend our heartfelt gratitude to all members and visitors for their unwavering support, faithful prayers, and generous contributions to our church community. Your dedication strengthens our faith and mission. May God bless you abundantly!</p>
+                </div>
+            </section>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var btn = document.querySelector('.beliefs-toggle');
+            var grid = document.querySelector('.beliefs-grid');
+            var ind = btn.querySelector('.indicator');
+            btn.addEventListener('click', function () {
+                var shown = grid.classList.toggle('show');
+                grid.setAttribute('aria-hidden', shown ? 'false' : 'true');
+                btn.setAttribute('aria-expanded', shown ? 'true' : 'false');
+                ind.textContent = shown ? '−' : '+';
+            });
+
+            var galleryBtn = document.querySelector('.gallery-toggle');
+            var galleryGrid = document.querySelector('.gallery-grid');
+            var galleryIndicator = galleryBtn.querySelector('.indicator');
+            galleryBtn.addEventListener('click', function () {
+                var shown = galleryGrid.classList.toggle('show');
+                galleryGrid.setAttribute('aria-hidden', shown ? 'false' : 'true');
+                galleryBtn.setAttribute('aria-expanded', shown ? 'true' : 'false');
+                galleryIndicator.textContent = shown ? '−' : '+';
+                if (galleryBtn.firstChild && galleryBtn.firstChild.nodeType === 3) {
+                    galleryBtn.firstChild.nodeValue = shown ? 'Hide Gallery ' : 'Show Gallery ';
+                }
+            });
+
+            var locationBtn = document.querySelector('.location-toggle');
+            var locationDetails = document.querySelector('.location-details');
+            var locationIndicator = locationBtn.querySelector('.indicator');
+            locationBtn.addEventListener('click', function () {
+                var shown = locationDetails.classList.toggle('show');
+                locationDetails.setAttribute('aria-hidden', shown ? 'false' : 'true');
+                locationBtn.setAttribute('aria-expanded', shown ? 'true' : 'false');
+                locationIndicator.textContent = shown ? '−' : '+';
+            });
+        });
+    </script>
+</body>
+</html>
